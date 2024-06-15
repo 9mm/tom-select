@@ -765,7 +765,7 @@ export default class TomSelect extends MicroPlugin(MicroEvent){
 	 *
 	 */
 	onInput(e:MouseEvent|KeyboardEvent):void {
-		
+
 		if( this.isLocked ){
 			return;
 		}
@@ -773,7 +773,7 @@ export default class TomSelect extends MicroPlugin(MicroEvent){
 		const value = this.inputValue();
 		if( this.lastValue === value ) return;
 		this.lastValue = value;
-		
+
 		if( value == '' ){
 			this._onInput();
 			return;
@@ -1283,9 +1283,9 @@ export default class TomSelect extends MicroPlugin(MicroEvent){
 		self.ignoreFocus = true;
 
 		if( self.control_input.offsetWidth ){
-			self.control_input.focus();
+			self.control_input.focus({ preventScroll: true });
 		}else{
-			self.focus_node.focus();
+			self.focus_node.focus({ preventScroll: true });
 		}
 
 		setTimeout(() => {
@@ -1455,14 +1455,14 @@ export default class TomSelect extends MicroPlugin(MicroEvent){
 
 			optgroup    = option[self.settings.optgroupField] || '';
 			optgroups   = Array.isArray(optgroup) ? optgroup : [optgroup];
-			
+
 
 			for (j = 0, k = optgroups && optgroups.length; j < k; j++) {
 				optgroup = optgroups[j];
 
 				let order = option.$order;
 				let self_optgroup = self.optgroups[optgroup];
-				if( self_optgroup === undefined ){					
+				if( self_optgroup === undefined ){
 					optgroup = '';
 				}else{
 					order = self_optgroup.$order;
@@ -1485,8 +1485,8 @@ export default class TomSelect extends MicroPlugin(MicroEvent){
 							active_option = option_el;
 						}
 					}
-				}	
-				
+				}
+
 				group_fragment.appendChild(option_el);
 				if( optgroup != '' ){
 					groups[optgroup] = group_order_i;
